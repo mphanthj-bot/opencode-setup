@@ -1,0 +1,19 @@
+{
+  "name": "opencode2-help-mcp",
+  "version": "1.0.0",
+  "description": "MCP server boc opencode2 --help da chuan hoa",
+  "type": "module",
+  "bin": {
+    "opencode2-help-mcp": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.2.0",
+    "zod": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
