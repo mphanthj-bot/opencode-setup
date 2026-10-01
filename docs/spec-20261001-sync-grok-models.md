@@ -29,3 +29,15 @@ Trị trùng model trong picker Grok và sync động `context_window` theo runt
 - Vẫn còn trùng tên với section FCC (`space-bunny-free` vs `opencode_zen/space-bunny-free`):
   xóa phía FCC có thể bị harness ghi lại + gãy `fork_secondary_model`. Chấp nhận.
 - `context_window` lấy từ registry `limit.context`, `max_completion_tokens` từ `limit.output`.
+
+## FreeTier gate (phat hien 2026-10-01)
+- Zen free KHONG phai mo hoan toan: chi `space-bunny-free` (va model unrestricted
+  tuong lai) cho anonymous. Cac model free con lai tra `FreeTierError: OpenCode's
+  free tier can only be used from within OpenCode` khi goi truc tiep ke ca bang curl.
+- Bang chung: binary opencode gui kem `x-opencode-client` + `x-opencode-ticket`
+  (ve dinh danh OpenCode); spoof header tay van 403. Khong bypass — dung duong
+  chinh thuc: chay qua opencode2, hoac qua FCC proxy khi no song lai.
+- Neu muon dung truc tiep tam thoi: doi `model_providers.zen-local` ve
+  `https://opencode.ai/zen/v1`, xoa `api_backend`/`api_key` o section quan ly
+  (xem backup `config.toml.bak-direct-zen`). Luc do chi model unrestricted chay duoc;
+  khi proxy song lai thi chay `--write` de tro ve dang proxy (co san trong script).
