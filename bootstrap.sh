@@ -32,8 +32,8 @@ fi
 log "npm install mcp/opencode2-help..."
 (cd "$REPO_DIR/mcp/opencode2-help" && npm install --no-audit --no-fund)
 
-# 4. Helper: them MCP neu chua co
-has_mcp() { opencode2 mcp list 2>/dev/null | grep -q " $1 "; }
+# 4. Helper: them MCP neu chua co (grep -w vi output padding nhieu space)
+has_mcp() { opencode2 mcp list 2>/dev/null | grep -qw "$1"; }
 add_remote() { # add_remote <name> <url> [header]
   if has_mcp "$1"; then log "mcp $1: da co, skip"; return; fi
   if [ -n "${3:-}" ]; then
@@ -86,7 +86,7 @@ else
   log "skill find-skills: da them"
 fi
 
-# 10. Reload + xac nhan
+# 10. Reload + xac nhan (chay tu HOME de list global, tranh project-scope)
 opencode2 reload
 log "=== TRANG THAI CUOI ==="
-opencode2 mcp list
+(cd "$HOME" && opencode2 mcp list)
